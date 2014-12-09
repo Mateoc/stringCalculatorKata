@@ -1,12 +1,15 @@
 package Katas.stringCalculator;
 
-import Katas.stringCalculator.StringCalculator;
-import junit.framework.Test;
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
-public class StringCalculatorTest extends TestCase {
+import org.junit.Test;
+
+import Katas.stringCalculator.StringCalculator;
+
+
+public class StringCalculatorTest  {
 	
-	
+	@Test
     public void testEmptyString() {
     	StringCalculator sc = new StringCalculator();
     	int i = -1;
@@ -19,6 +22,7 @@ public class StringCalculatorTest extends TestCase {
     	assertEquals(0,i);
     }
     
+	@Test
     public void testOneNumber() {
     	StringCalculator sc = new StringCalculator();
     	int i = -1;
@@ -31,6 +35,7 @@ public class StringCalculatorTest extends TestCase {
     	assertEquals(1,i);
     }
     
+	@Test
     public void testTwoNumbers() {
     	StringCalculator sc = new StringCalculator();
     	int i = -1;
@@ -43,6 +48,7 @@ public class StringCalculatorTest extends TestCase {
     	assertEquals(3,i);
     }
     
+	@Test
     public void testMoreNumbers() {
     	StringCalculator sc = new StringCalculator();
     	int i = -1;
@@ -55,6 +61,7 @@ public class StringCalculatorTest extends TestCase {
     	assertEquals(13,i);
     }
     
+	@Test
     public void testEndLine() {
     	StringCalculator sc = new StringCalculator();
     	int i=-1;
@@ -67,6 +74,7 @@ public class StringCalculatorTest extends TestCase {
     	assertEquals(3,i);
     }
     
+	@Test
     public void testNewDelimiter() {
     	StringCalculator sc = new StringCalculator();
     	int i = -1;
@@ -76,9 +84,11 @@ public class StringCalculatorTest extends TestCase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(i);
     	assertEquals(3,i);
     }
     
+	@Test
     public void testNewDelimiter2() {
     	StringCalculator sc = new StringCalculator();
     	int i = -1;
@@ -91,16 +101,37 @@ public class StringCalculatorTest extends TestCase {
     	assertEquals(3,i);
     }
     
-    public void testNegatives() {
+    @Test (expected=NegativeNumberException.class)
+    public void testNegatives() throws NegativeNumberException {
+    	StringCalculator sc = new StringCalculator();
+    	int i = -1;
+		i = sc.add("1,-2,2,-1");
+
+    }
+    
+    @Test 
+    public void testAnyLengthTokens() {
     	StringCalculator sc = new StringCalculator();
     	int i = -1;
 		try {
-			i = sc.add("1,-2,2,-1");
-			//assert false;
-			assertTrue(true);
+			i = sc.add("//[**]\n1**2");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			assertTrue(true);
+			e.printStackTrace();
 		}
+    	assertEquals(3,i);
+    }
+    
+    @Test 
+    public void testAnyLengthTokens2() {
+    	StringCalculator sc = new StringCalculator();
+    	int i = -1;
+		try {
+			i = sc.add("//[**][##]\n1**2##3");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	assertEquals(6,i);
     }
 }
