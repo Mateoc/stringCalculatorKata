@@ -1,7 +1,5 @@
 package Katas.stringCalculator;
 
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -54,7 +52,7 @@ public class StringCalculator {
 	{  
 	  try  
 	  {  
-	    int d = Integer.parseInt(str);  
+		  Integer.parseInt(str);  
 	  }  
 	  catch(NumberFormatException nfe)  
 	  {  

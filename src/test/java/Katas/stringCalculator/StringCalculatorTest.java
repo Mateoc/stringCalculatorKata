@@ -104,9 +104,7 @@ public class StringCalculatorTest  {
     @Test (expected=NegativeNumberException.class)
     public void testNegatives() throws NegativeNumberException {
     	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		i = sc.add("1,-2,2,-1");
-
+    	sc.add("1,-2,2,-1");
     }
     
     @Test 
