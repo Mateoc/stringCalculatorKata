@@ -7,130 +7,88 @@ import org.junit.Test;
 import com.talosdigital.kata.stringCalculator.NegativeNumberException;
 import com.talosdigital.kata.stringCalculator.StringCalculator;
 
+public class StringCalculatorTest {
 
-public class StringCalculatorTest  {
-	
 	@Test
-    public void testEmptyString() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		try {
-			i = sc.add("");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	assertEquals(0,i);
-    }
-    
+	public void testEmptyString() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("");
+		assertEquals(0, i);
+	}
+
 	@Test
-    public void testOneNumber() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		try {
-			i = sc.add("1");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	assertEquals(1,i);
-    }
-    
+	public void testOneNumber() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("1");
+		assertEquals(1, i);
+	}
+
 	@Test
-    public void testTwoNumbers() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		try {
-			i = sc.add("1,2");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	assertEquals(3,i);
-    }
-    
+	public void testTwoNumbers() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("1,2");
+		assertEquals(3, i);
+	}
+
 	@Test
-    public void testMoreNumbers() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		try {
-			i = sc.add("1,2,3,7");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	assertEquals(13,i);
-    }
-    
+	public void testMoreNumbers() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("1,2,3,7");
+		assertEquals(13, i);
+	}
+
 	@Test
-    public void testEndLine() {
-    	StringCalculator sc = new StringCalculator();
-    	int i=-1;
-		try {
-			i = sc.add("1\n2");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	assertEquals(3,i);
-    }
-    
+	public void testEndLine() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("1\n2");
+		assertEquals(3, i);
+	}
+
 	@Test
-    public void testNewDelimiter() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		try {
-			i = sc.add("//;,1;2");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(i);
-    	assertEquals(3,i);
-    }
-    
+	public void testNewDelimiter() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("//;,1;2");
+		assertEquals(3, i);
+	}
+
 	@Test
-    public void testNewDelimiter2() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
+	public void testNewDelimiter2() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("//;\n1;2");
+		assertEquals(3, i);
+	}
+
+	@Test
+	public void testNegatives() {
+		StringCalculator sc = new StringCalculator();
 		try {
-			i = sc.add("//;\n1;2");
-		} catch (Exception e) {
+			sc.add("1,-2,2,-1");
+		} catch (NegativeNumberException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			assertEquals("Negatives not allowed: -2, -1",e.getMessage());
 		}
-    	assertEquals(3,i);
-    }
-    
-    @Test (expected=NegativeNumberException.class)
-    public void testNegatives() throws NegativeNumberException {
-    	StringCalculator sc = new StringCalculator();
-    	sc.add("1,-2,2,-1");
-    }
-    
-    @Test 
-    public void testAnyLengthTokens() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		try {
-			i = sc.add("//[**]\n1**2");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	assertEquals(3,i);
-    }
-    
-    @Test 
-    public void testAnyLengthTokens2() {
-    	StringCalculator sc = new StringCalculator();
-    	int i = -1;
-		try {
-			i = sc.add("//[**][##]\n1**2##3");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	assertEquals(6,i);
-    }
+	}
+
+	@Test
+	public void testAnyLengthTokens() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("//[**]\n1**2");
+		assertEquals(3, i);
+	}
+
+	@Test
+	public void testAnyLengthTokens2() throws NegativeNumberException {
+		StringCalculator sc = new StringCalculator();
+		int i = -1;
+		i = sc.add("//[**][##]\n1**2##3");
+		assertEquals(6, i);
+	}
 }
