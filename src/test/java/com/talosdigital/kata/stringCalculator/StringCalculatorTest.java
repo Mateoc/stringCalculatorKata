@@ -1,10 +1,11 @@
-package Katas.stringCalculator;
+package com.talosdigital.kata.stringCalculator;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Katas.stringCalculator.StringCalculator;
+import com.talosdigital.kata.stringCalculator.NegativeNumberException;
+import com.talosdigital.kata.stringCalculator.StringCalculator;
 
 
 public class StringCalculatorTest  {

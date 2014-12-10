@@ -1,4 +1,4 @@
-package Katas.stringCalculator;
+package com.talosdigital.kata.stringCalculator;
 
 public class NegativeNumberException extends Exception {
 	/**
