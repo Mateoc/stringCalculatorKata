@@ -68,7 +68,6 @@ public class StringCalculator {
 						regexBuilder.append("|").append(Pattern.quote(splitedDelims[j].replace("]", "")));
 					}
 				}
-				System.out.println(regexBuilder.toString());
 				//the loop just recreate the initial input without the custom delimiters 
 				StringBuilder newNumbers = new StringBuilder();
 				for(int j = 1; j<tokens.length; j++){
